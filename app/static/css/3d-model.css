@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+}
+
+.popup {
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    pointer-events: none; /* so clicks pass through if you want */
+    transform: translate(-50%, -100%);
+}
