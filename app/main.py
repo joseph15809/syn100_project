@@ -13,6 +13,6 @@ def read_html(file_path: str) -> str:
 def home_html():
     return HTMLResponse(content=read_html("app/static/homepage.html"))
 
-@app.get("/3d-model.html", response_class=HTMLResponse)
+@app.get("/terrarium", response_class=HTMLResponse)
 def terrarium_html():
     return HTMLResponse(content=read_html("app/static/3d-model.html"))
