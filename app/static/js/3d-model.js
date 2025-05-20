@@ -11,7 +11,7 @@ const raycaster = new THREE.Raycaster();
 const mouse     = new THREE.Vector2();
 const scene    = new THREE.Scene();
 scene.background = new THREE.Color( 0xeeeeee );
-let camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 100);
+let camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 1500);
 camera.position.set(0, 2, 5);
 scene.background = new THREE.Color( 0x000000 );
 const loader = new GLTFLoader();

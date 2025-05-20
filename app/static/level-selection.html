@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Level Selection</title>
+        <link rel = "stylesheet" href="\static\css\level-selection.css">
+        <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+                "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/",
+                "GLTFLoader" : "https://unpkg.com/three@0.162.0/examples/jsm/loaders/GLTFLoader.js"
+            }
+        }
+        </script>
+    </head>
+    
+    <body>
+        <canvas id="starfield"></canvas>
+
+        <img class ="image-gradient" src="\static\assets\gradient.png" alt="gradient">
+        <div class="layer-blur"></div>
+        
+        <div class="container">
+            <header>
+                <h1 class = "logo">Level Selection</h1>
+                <nav>  
+                    <div class="tag-box">
+                        <div class="tag">
+                            <a href="/">HOME</a>
+                        </div>
+                    </div>
+
+                    <div class="tag-box">
+                        <div class="tag">
+                            <a href="\static\team.html">MEET THE TEAM</a>
+                        </div>
+                </div>
+                </nav>
+            </header>
+            <main>
+                <div class="content" >
+                    <div class="level" id="level-1" data-model="/static/assets/3d-model.glb">
+                        <h1> Tech Ruin</h1>
+                            <model-viewer
+                                src="/static/assets/test_model.glb"
+                                alt="Tech Ruin"
+                                auto-rotate
+                                rotation-per-second="15deg"
+                                style="width: 100%; height: 70%;"
+                            ></model-viewer>
+                    </div>
+                    <div class="level" id="level-2" data-model="/static/assets/3d-model.glb">
+                        <h1> Solarpunk </h1>
+                            <model-viewer
+                                src="/static/assets/test_model.glb"
+                                alt="Solarpunk"
+                                auto-rotate
+                                rotation-per-second="15deg"
+                                style="width: 100%; height: 70%;"
+                            ></model-viewer>                        
+                    </div>
+                    <div class="level" id="level-3" data-model="/static/assets/3d-model.glb">
+                        <h1> Nature </h1>
+                            <model-viewer
+                                src="/static/assets/test_model.glb"
+                                alt="Nature"
+                                auto-rotate
+                                rotation-per-second="15deg"
+                                style="width: 100%; height: 70%;"
+                            ></model-viewer>                        
+                    </div>
+                    
+                </div>
+            </main>
+        </div>
+
+    </body>
+    <script src="/static/js/starfield.js" ></script>
+    <script src="/static/js/level-selection.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</html>

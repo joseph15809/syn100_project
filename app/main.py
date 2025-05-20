@@ -16,3 +16,11 @@ def home_html():
 @app.get("/terrarium", response_class=HTMLResponse)
 def terrarium_html():
     return HTMLResponse(content=read_html("app/static/3d-model.html"))
+
+@app.get("/level-selection", response_class=HTMLResponse)
+def level_html():
+    return HTMLResponse(content=read_html("app/static/level-selection.html"))
+
+@app.get("/test-model", response_class=HTMLResponse)
+def level_html():
+    return HTMLResponse(content=read_html("app/static/3d-model.html"))

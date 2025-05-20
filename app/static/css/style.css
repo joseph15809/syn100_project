@@ -319,14 +319,24 @@ main {
   position: fixed;
   bottom: 1rem;
   left: 1rem;
-  width: 300px;
+  width: clamp(80px, 15vw, 250px);
+
   z-index: 1000;
   pointer-events: none;
 }
+
 .qr-container img {
-  display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 500px) {
+  .qr-container {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    width: 100px;
+  }
 }
 
 /* ── 13. 3D Model Position ── */

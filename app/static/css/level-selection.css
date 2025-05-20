@@ -1,0 +1,273 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+  /* Starfield & glow variables */
+    --x: 0;
+    --y: 0;
+    --xp: 0;
+    --yp: 0;
+    --hue: calc(0 + (var(--xp) * 500));
+    --bg: hsl(0 0% 10%);
+    --size: 100px;
+    --glow-opacity: 0;
+    --glow: radial-gradient(
+        50% 50% at center,
+        hsl(var(--hue) 80% 85% / var(--glow-opacity)),
+        hsl(var(--hue) 80% 70% / calc(var(--glow-opacity)*0.8)),
+        transparent
+        )
+        calc((var(--x)*1px) - (var(--size)*0.5))
+        calc((var(--y)*1px) - (var(--size)*0.5))
+        / var(--size) var(--size)
+        no-repeat fixed;
+}
+
+/* ── 2. Body & Base ── */
+body {
+  font-family:
+        system-ui, -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: black;
+    color: #e7e7e7;
+    min-height: 100vh;
+    line-height: 1.5;
+    position: relative; /* for starfield stacking */
+}
+
+/* ── 3. Starfield Canvas ── */
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: -999;
+    pointer-events: none;
+}
+
+/* ── 4. Gradient Blur ── */
+.image-gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.5;
+    z-index: -1;
+}
+.layer-blur {
+    height: 0;
+    width: 30rem;
+    position: absolute;
+    top: 20%;
+    right: 0;
+    box-shadow: 0 0 700px 15px white;
+    rotate: -30deg;
+    z-index: -1;
+}
+
+/* ── 5. Layout Container ── */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    overflow: hidden;
+}
+
+/* ── 6. Header & Nav ── */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5rem;
+    position: relative; /* for absolute nav centering */
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+/* center the nav */
+nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    z-index: 10;
+}
+
+/* link base */
+nav a {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+nav a:hover {
+    color: #a7a7a7;
+}
+
+/* ── 7. Nav Buttons (Terrarium / Meet The Team) ── */
+nav .tag-box {
+    position: relative;
+    width: 18rem;
+    height: 2.5rem;
+    border-radius: 50px;
+    background: linear-gradient(
+        to right,
+        #656565, #7f42a7, #6600c5,
+        #5300a0, #757575, #656565
+    );
+    background-size: 200%;
+    animation: animationGradient 2.5s linear infinite;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    transition:
+        transform 0.2s ease,
+        animation-play-state 0.2s;
+}
+
+nav .tag-box:hover {
+    transform: scale(0.95);
+    background: none;              /* remove gradient on hover */
+    animation-play-state: paused;  /* pause pulsing */
+}
+
+nav .tag-box .tag {
+    position: absolute;
+    inset: 3px;
+    background-color: black;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* text-light on hover */
+nav .tag-box:hover .tag a {
+    background: linear-gradient(
+    to right,
+        #656565, #7f42a7, #6600c5,
+        #5300a0, #757575, #656565
+    );
+    background-size: 200%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animationGradient 3s linear infinite;
+}
+
+/* ── 8. Keyframes ── */
+@keyframes animationGradient {
+    to {
+        background-position: 200%;
+    }
+}
+
+main {
+    display: flex;
+    width: 100%;
+    min-height: calc(90vh - 6rem);
+}
+
+/* level selection*/
+.content {
+    width: 100%;
+}
+
+/* level container*/
+.content div{
+    float: left;
+    width: 33%;
+    height: 100%;
+    text-align: center;
+    box-shadow:none;    
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.content div:hover {
+    background-color: rgba(255, 255, 255, 0.158);
+    box-shadow:
+    
+    inset 0 0 8px  rgba(255,255,255,0.8),
+    inset 0 0 16px rgb(255, 255, 255),
+    
+    0 0 8px  rgba(255,255,255,0.8),
+    0 0 16px rgba(255,255,255,0.6),
+    0 0 24px rgba(255,255,255,0.4);
+}
+
+/* level title*/
+.content h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    margin: 2rem 0;
+    line-height: 1.2;
+    background: linear-gradient(
+        to right,
+        #f3f3f3, #fffefd, #fffdfc,
+        #ffffff, #e2dfdb, #f5f3f3
+    );
+    background-size: 200%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow:
+        0 0 8px  rgba(255,255,255,0.9),
+        0 0 16px rgba(255,255,255,0.7),
+        0 0 24px rgba(255,255,255,0.5),
+        0 0 32px rgba(255,255,255,0.3);
+    animation: animationGradient 4s linear infinite;
+}
+
+/* level fade*/
+.level {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.6s forwards ease-out;
+}
+
+.level:nth-child(1) {
+    animation-delay: 0s;
+}
+.level:nth-child(2) {
+    animation-delay: 0.3s;
+}
+.level:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.level model-viewer {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.6s forwards ease-out;
+}
+
+.level model-viewer:nth-child(1) {
+    animation-delay: 2.5s;
+}
+
+.level model-viewer:nth-child(2) {
+    animation-delay: 2.5s;
+}
+
+.level model-viewer:nth-child(3) {
+    animation-delay: 2.5s;
+}
