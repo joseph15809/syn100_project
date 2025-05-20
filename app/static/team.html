@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meet The Team</title>
+
+  <link rel="stylesheet" href="/app/static/css/style.css" />
+
+  <!-- AOS for scroll‐in animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <style>
+    /* team cards */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .team-member {
+      text-align: center;
+    }
+    .team-member img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 4px solid #5300a0;
+      box-shadow: 0 0 10px rgba(83,0,160,0.6);
+    }
+    .team-member h3 {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- starfield canvas -->
+  <canvas id="starfield"></canvas>
+
+  <!-- background gradient & blur layers -->
+  <img class="image-gradient" src="/app/static/assets/gradient.png" alt="gradient" />
+  <div class="layer-blur"></div>
+
+  <div class="container">
+    <header>
+      <h1 data-aos="fade-down" data-aos-duration="1500" class="logo">SYN 100</h1>
+
+      <nav>
+        <div data-aos="fade-down" data-aos-duration="1500" class="tag-box">
+          <div class="tag"><a href="\app\static\index.html">HOME</a></div>
+        </div>
+        <div data-aos="fade-down" data-aos-duration="2000" class="tag-box">
+          <div class="tag"><a href="\app\static\3d-model.html">TERRARIUM</a></div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="content">
+        <div
+          class="tag-box"
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-back"
+          data-aos-delay="300"
+          data-aos-offset="0"
+          data-aos-duration="1500"
+        >
+        </div>
+
+        <h1
+          data-aos="fade-down"
+          data-aos-duration="2000"
+        >
+          OUR TEAM
+        </h1>
+
+        <div class="team-grid">
+          <div class="team-member" data-aos="fade-up" data-aos-offset="50">
+            <img src="https://via.placeholder.com/150" alt="Akhil Kalakota" />
+            <h3>Akhil Kalakota</h3>
+          </div>
+          <div class="team-member" data-aos="fade-up" data-aos-offset="50" data-aos-delay="100">
+            <img src="https://via.placeholder.com/150" alt="Omar Mahmood" />
+            <h3>Omar Mahmood</h3>
+          </div>
+          <div class="team-member" data-aos="fade-up" data-aos-offset="50" data-aos-delay="200">
+            <img src="https://via.placeholder.com/150" alt="Brian Huynh" />
+            <h3>Brian Huynh</h3>
+          </div>
+          <div class="team-member" data-aos="fade-up" data-aos-offset="50" data-aos-delay="300">
+            <img src="https://via.placeholder.com/150" alt="Joe Gonzalez" />
+            <h3>Joe Gonzalez</h3>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- AOS init -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <!-- your starfield + pointer‐glow script -->
+  <script src="/app/static/js/script.js"></script>
+</body>
+</html>

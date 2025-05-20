@@ -1,20 +1,57 @@
-/* Reset & Base Styles */
-* {
-  margin: 0;
+*, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
   padding: 0;
 }
 
+:root {
+  /* Starfield & glow variables */
+  --x: 0;
+  --y: 0;
+  --xp: 0;
+  --yp: 0;
+  --hue: calc(0 + (var(--xp) * 500));
+  --bg: hsl(0 0% 10%);
+  --size: 100px;
+  --glow-opacity: 0;
+  --glow: radial-gradient(
+      50% 50% at center,
+      hsl(var(--hue) 80% 85% / var(--glow-opacity)),
+      hsl(var(--hue) 80% 70% / calc(var(--glow-opacity)*0.8)),
+      transparent
+    )
+    calc((var(--x)*1px) - (var(--size)*0.5))
+    calc((var(--y)*1px) - (var(--size)*0.5))
+    / var(--size) var(--size)
+    no-repeat fixed;
+}
+
+/* ── 2. Body & Base ── */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: black;
   color: #e7e7e7;
   min-height: 100vh;
   line-height: 1.5;
+  position: relative; /* for starfield stacking */
 }
 
-/* Gradient Blur */
+/* ── 3. Starfield Canvas ── */
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  z-index: -999;
+  pointer-events: none;
+}
+
+/* ── 4. Gradient Blur ── */
 .image-gradient {
   position: absolute;
   top: 0;
@@ -22,7 +59,6 @@ body {
   opacity: 0.5;
   z-index: -1;
 }
-
 .layer-blur {
   height: 0;
   width: 30rem;
@@ -34,7 +70,7 @@ body {
   z-index: -1;
 }
 
-/* Container */
+/* ── 5. Layout Container ── */
 .container {
   width: 100%;
   margin: 0 auto;
@@ -42,62 +78,101 @@ body {
   overflow: hidden;
 }
 
-/* Header & Nav */
+/* ── 6. Header & Nav ── */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5rem;
-  position: relative;
+  position: relative; /* for absolute nav centering */
 }
 
 header h1 {
-  margin: 0;
   font-size: 3rem;
   font-weight: 300;
+  margin: 0;
 }
 
+/* center the nav */
 nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 3rem;
-  margin-left: -5%;
-  position: relative;
   z-index: 10;
 }
 
+/* link base */
 nav a {
   font-size: 1rem;
   letter-spacing: 0.1rem;
-  transition: color 0.2s ease;
   text-decoration: none;
   color: inherit;
-  z-index: 999;
+  transition: color 0.2s ease;
 }
-
 nav a:hover {
   color: #a7a7a7;
 }
 
-/* Sign-in Button */
-.btn-signing {
-  background-color: #a7a7a7;
-  color: black;
-  padding: 0.8rem 2rem;
+/* ── 7. Nav Buttons (Terrarium / Meet The Team) ── */
+nav .tag-box {
+  position: relative;
+  width: 18rem;
+  height: 2.5rem;
   border-radius: 50px;
-  border: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
-  z-index: 999;
+  background: linear-gradient(
+    to right,
+    #656565, #7f42a7, #6600c5,
+    #5300a0, #757575, #656565
+  );
+  background-size: 200%;
+  animation: animationGradient 2.5s linear infinite;
+  box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    animation-play-state 0.2s;
 }
 
-.btn-signing:hover {
-  background-color: white;
+nav .tag-box:hover {
+  transform: scale(0.95);
+  background: none;              /* remove gradient on hover */
+  animation-play-state: paused;  /* pause pulsing */
 }
 
-/* Main & Content */
+nav .tag-box .tag {
+  position: absolute;
+  inset: 3px;
+  background-color: black;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* text-light on hover */
+nav .tag-box:hover .tag a {
+  background: linear-gradient(
+    to right,
+    #656565, #7f42a7, #6600c5,
+    #5300a0, #757575, #656565
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animationGradient 3s linear infinite;
+}
+
+/* ── 8. Keyframes ── */
+@keyframes animationGradient {
+  to {
+    background-position: 200%;
+  }
+}
+
+/* ── 9. Main Content ── */
 main {
   display: flex;
   flex-direction: column;
@@ -108,80 +183,28 @@ main {
 .content {
   max-width: 40rem;
   margin-left: 10%;
-  z-index: 999;
+  z-index: 1;
 }
 
-/* Animated Gradient Tag */
-.tag-box {
-  position: relative;
-  width: 18rem;
-  height: 2.5rem;
-  border-radius: 50px;
-  background: linear-gradient(
-    to right,
-    #656565,
-    #7f42a7,
-    #6600c5,
-    #5300a0,
-    #757575,
-    #656565
-  );
-  background-size: 200%;
-  animation: animationGradient 2.5s linear infinite;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-@keyframes animationGradient {
-  to {
-    background-position: 200%;
-  }
-}
-
-.tag-box .tag {
-  position: absolute;
-  inset: 3px;
-  background-color: black;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.5s ease;
-  cursor: pointer;
-}
-
-.tag-box .tag:hover {
-  color: #5300a0;
-}
-
-/* Pulsing Gradient Heading */
+/* heading with pulsing rainbow gradient */
 .content h1 {
   font-size: 4rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
   margin: 2rem 0;
   line-height: 1.2;
-
-  /* vibrant rainbow-style gradient fill */
   background: linear-gradient(
     to right,
-    #ff007f,
-    #ff7f00,
-    #7fff00,
-    #00ff7f,
-    #007fff,
-    #7f00ff
+    #ff007f, #ff7f00, #7fff00,
+    #00ff7f, #007fff, #7f00ff
   );
   background-size: 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* multi-hued glow */
   text-shadow:
-    0 0 10px rgba(255, 0, 127, 0.7),
-    0 0 20px rgba(255, 127, 0, 0.6),
-    0 0 30px rgba(127, 255, 0, 0.5);
-
-  /* slide gradient */
+    0 0 10px rgba(255,0,127,0.7),
+    0 0 20px rgba(255,127,0,0.6),
+    0 0 30px rgba(127,255,0,0.5);
   animation: animationGradient 4s linear infinite;
 }
 
@@ -197,31 +220,86 @@ main {
   gap: 1rem;
 }
 
-/* Primary & Secondary Buttons with Holographic Hover */
-.btn-get-started,
-.btn-signing-main {
-  text-decoration: none;
+/* ── 10. Documentation Button (Glowy + Text-Fill on Hover) ── */
+.btn-get-started {
+  background: var(--bg);
+  border: 4px solid transparent;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1ch;
+  cursor: pointer;
   position: relative;
   overflow: hidden;
-  display: inline-block;
-  transition: /* background-color for default hover */
-      background-color 0.2s ease,
-      /* scale & glow for holographic hover */
-      transform 0.5s ease,
-      box-shadow 0.5s ease;
+  transition:
+    background-size 0.24s,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    var(--glow),
+    linear-gradient(black, black) border-box;
+}
+
+.btn-get-started::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  box-shadow: 0 1px hsl(0 0% 100% / 0.15) inset;
+  border-radius: 1rem;
   z-index: 2;
 }
 
-.btn-get-started {
-  border: 1px solid #2a2a2a;
-  padding: 0.7rem 1.2rem;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+.btn-get-started span {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: var(--glow), black;
+  background-clip: text;
+  color: transparent;
+  z-index: 3;
 }
 
+/* text-fill on hover */
+.btn-get-started:hover span {
+  background: linear-gradient(
+    to right,
+    hsl(var(--hue) 80% 85%),
+    hsl(calc(var(--hue) + 60) 80% 85%),
+    hsl(calc(var(--hue) + 120) 80% 85%)
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animationGradient 3s linear infinite;
+}
+
+.btn-get-started::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 4px solid transparent;
+  border-radius: 1rem;
+  background: var(--glow);
+  filter: blur(20px);
+  z-index: 1;
+}
+
+:root:has(.btn-get-started:active) {
+  --size: 300px;
+}
+
+.btn-get-started:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(0,255,255,0.5);
+}
+
+/* ── 11. Secondary “Get Started” Button ── */
 .btn-signing-main {
+  text-decoration: none;
   background-color: lightgray;
   color: black;
   padding: 0.6rem 2.5rem;
@@ -229,50 +307,29 @@ main {
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
-}
-
-/* Shine stripe pseudo-element */
-.btn-get-started::before,
-.btn-signing-main::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    0deg,
-    transparent,
-    transparent 30%,
-    rgba(255, 255, 255, 0.3)
-  );
-  transform: rotate(-45deg);
-  opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Hover States */
-.btn-get-started:hover {
-  background-color: #1a1a1a;
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  transition: background-color 0.2s ease;
 }
 
 .btn-signing-main:hover {
   background-color: gray;
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
 }
 
-.btn-get-started:hover::before,
-.btn-signing-main:hover::before {
-  opacity: 1;
-  transform: rotate(-45deg) translateY(100%);
+/* ── 12. QR Code Container ── */
+.qr-container {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  width: 300px;
+  z-index: 1000;
+  pointer-events: none;
+}
+.qr-container img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-/* 3D Robot Positioning */
+/* ── 13. 3D Model Position ── */
 .robot-3d {
   position: absolute;
   top: 0;
