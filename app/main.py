@@ -22,5 +22,17 @@ def level_html():
     return HTMLResponse(content=read_html("app/static/level-selection.html"))
 
 @app.get("/test-model", response_class=HTMLResponse)
-def level_html():
+def model_html():
     return HTMLResponse(content=read_html("app/static/3d-model.html"))
+
+@app.get("/team", response_class=HTMLResponse)
+def team_html():
+    return HTMLResponse(content=read_html("app/static/team.html"))
+
+@app.get("/lore", response_class=HTMLResponse)
+def lore_html():
+    return HTMLResponse(content=read_html("app/static/lore.html"))
+    
+@app.get("/documentation", response_class=HTMLResponse)
+def document_html():
+    return HTMLResponse(content=read_html("app/static/documentation.html"))
