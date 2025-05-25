@@ -20,32 +20,38 @@ const clone4 = tpl.content.cloneNode(true);
 clone4.querySelector(".card-fullname").textContent = "Joseph Gonzalez";
 joe.appendChild(clone4);
 
+
 document.addEventListener("DOMContentLoaded", () => {
-  const card = document.querySelector(".card");
-  const buttons = document.querySelectorAll(".card-buttons button");
-  const sections = document.querySelectorAll(".card-section");
+  // Grab *all* cards on the page
+  document.querySelectorAll(".card").forEach(card => {
+    // Within THIS card, find its buttons and its sections
+    const buttons  = card.querySelectorAll(".card-buttons button");
+    const sections = card.querySelectorAll(".card-section");
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Remove active class from all buttons
-      buttons.forEach(btn => btn.classList.remove("is-active"));
-      // Add to the clicked one
-      button.classList.add("is-active");
+    // (Optional) Activate the first tab by default
+    buttons[0].classList.add("is-active");
+    sections[0].classList.add("is-active");
 
-      const target = button.dataset.section;
+    // Wire up each button
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        // 1) Reset buttons/sections *inside this card only*
+        buttons.forEach(btn => btn.classList.remove("is-active"));
+        sections.forEach(sec => sec.classList.remove("is-active"));
 
-      // Hide all sections
-      sections.forEach(section => {
-        section.classList.remove("is-active");
+        // 2) Activate the clicked button…
+        button.classList.add("is-active");
+
+        // 3) …and its target section
+        const targetSelector = button.dataset.section;
+        const targetSection  = card.querySelector(targetSelector);
+        if (targetSection) {
+          targetSection.classList.add("is-active");
+        }
       });
-
-      // Show the target section
-      const activeSection = card.querySelector(target);
-      if (activeSection) {
-        activeSection.classList.add("is-active");
-      }
     });
   });
 });
+
 
 

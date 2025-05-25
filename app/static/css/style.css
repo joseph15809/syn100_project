@@ -84,7 +84,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5rem;
-  position: relative; /* for absolute nav centering */
+  position: flex; /* for absolute nav centering */
 }
 
 header h1 {
@@ -95,7 +95,7 @@ header h1 {
 
 /* center the nav */
 nav {
-  position: absolute;
+  position: flex;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
