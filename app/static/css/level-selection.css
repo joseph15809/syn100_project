@@ -89,7 +89,6 @@ header {
 }
 
 header h1 {
-    width: 25%;
     font-size: 3rem;
     font-weight: 300;
     margin: 0;
@@ -97,9 +96,8 @@ header h1 {
 
 /* center the nav */
 nav {
-    position: relative;
-    width: 75%;
-    right: 25%;
+    position: absolute;
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
