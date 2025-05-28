@@ -1,8 +1,12 @@
 from fastapi import FastAPI, Request, Response, HTTPException
-from fastapi.responses import Response, HTMLResponse, RedirectResponse, JSONResponse
+from fastapi.responses import Response, HTMLResponse, RedirectResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
+import os
+import boto3
+from dotenv import load_dotenv
 
 app = FastAPI()
+
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 def read_html(file_path: str) -> str:
