@@ -164,7 +164,7 @@ nav .tag-box:hover .tag a {
     #5300a0, #757575, #656565
   );
   background-size: 200%;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: animationGradient 3s linear infinite;
 }
@@ -203,7 +203,7 @@ main {
     #00ff7f, #007fff, #7f00ff
   );
   background-size: 200%;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
     0 0 10px rgba(255,0,127,0.7),
@@ -276,7 +276,7 @@ main {
     hsl(calc(var(--hue) + 120) 80% 85%)
   );
   background-size: 200%;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: animationGradient 3s linear infinite;
 }

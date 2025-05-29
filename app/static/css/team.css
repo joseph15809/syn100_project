@@ -179,7 +179,7 @@ main {
 }
 
 .content {
-    margin-left: 10%;
+    margin-left: 5%;
 }
 
 .title {
@@ -207,14 +207,18 @@ main {
 .team-grid {
     display: flex;
     flex-wrap: wrap;
+
     gap: 1rem; 
 }
 
-.team-split {
-    display: flex;
-    
-    flex-wrap: wrap;
-    gap: 1rem; 
+.split-team {
+  display: flex;              /* make it a flex container */
+  flex-direction: row;        /* explicitly lay children out in a row */
+  justify-content: space-between; /* spread them out */
+  align-items: flex-start;    /* or center, depending on your design */
+  width: 100%;      
+  gap: 1rem; 
+  flex-wrap: nowrap; 
 }
 
 .team-member {
@@ -229,7 +233,7 @@ main {
   position: relative;
   z-index: 1;
   overflow-x: hidden;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   display: flex;
   transition: 0.3s;
   flex-direction: column;
@@ -324,7 +328,7 @@ main {
 
 div .card-fullname {
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   font-size: 22px;
   font-weight: 700;
   text-align: center;
@@ -359,6 +363,7 @@ div .card-fullname {
   font-weight: 700;
   font-size: 13px;
   margin-bottom: 8px;
+  color:#000000;
 }
 
 .card-content {
@@ -501,7 +506,7 @@ div .card-fullname {
   font-size: 11px;
   text-indent: -35px;
   border-radius: 50%;
-  color: rgba(134, 134, 134, 0.7);
+  color: rgba(155, 155, 155, 0.7);
   background: linear-gradient(to bottom, #a0aee3 0%, #516acc 100%);
 }
 
@@ -509,6 +514,7 @@ div .card-fullname {
   font-weight: 500;
   font-size: 14px;
   margin-bottom: 5px;
+  color:#000000;
 }
 
 .card-item-desc {
