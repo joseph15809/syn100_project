@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang ="en">
-    <head>
-        <meta charset = "UTF-8">
-        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Level Selection</title>
+{% extends "template.html" %}
+{% block title %}Level Selection{% endblock %}
+{% block extra_head %}
         <link rel = "stylesheet" href="\static\css\level-selection.css">
         <script type="importmap">
         {
@@ -14,36 +11,9 @@
             }
         }
         </script>
-    </head>
-    
-    <body>
-        <canvas id="starfield"></canvas>
-        <div class="layer-blur"></div>
-        
-        <div class="container">
-            <header>
-                <h1 class = "logo">Levels</h1>
-                <nav>  
-                    <div class="tag-box">
-                        <div class="tag">
-                            <a href="/">HOME</a>
-                        </div>
-                    </div>
+{% endblock %}
 
-                    <div class="tag-box">
-                        <div class="tag">
-                            <a href="\static\team.html">MEET THE TEAM</a>
-                        </div>
-                    </div>
-
-                    <div class="tag-box">
-                        <div class="tag">
-                            <a href="\static\lore.html">LORE</a>
-                        </div>
-                    </div>
-
-                </nav>
-            </header>
+{% block content %}
             <main>
                 <div class="content" >
                     <div class="level" id="level-1" data-model="/static/assets/3d-model.glb">
@@ -82,7 +52,7 @@
         </div>
 
     </body>
-    <script src="/static/js/starfield.js?v=2" ></script>
     <script src="/static/js/level-selection.js"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-</html>
+
+    {% endblock %}

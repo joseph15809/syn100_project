@@ -1,12 +1,14 @@
 from fastapi import FastAPI, Request, Response, HTTPException
 from fastapi.responses import Response, HTMLResponse, RedirectResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 import os
 import boto3
 from dotenv import load_dotenv
 
 app = FastAPI()
 
+templates = Jinja2Templates(directory="app/static")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 def read_html(file_path: str) -> str:
@@ -14,24 +16,24 @@ def read_html(file_path: str) -> str:
         return f.read() 
 
 @app.get("/", response_class=HTMLResponse)
-def home_html():
-    return HTMLResponse(content=read_html("app/static/homepage.html"))
+def home_html(request: Request):
+    return templates.TemplateResponse("homepage.html", {"request": request})
 
 @app.get("/terrarium", response_class=HTMLResponse)
 def terrarium_html():
     return HTMLResponse(content=read_html("app/static/3d-model.html"))
 
 @app.get("/level-selection", response_class=HTMLResponse)
-def level_html():
-    return HTMLResponse(content=read_html("app/static/level-selection.html"))
+def level_html(request: Request):
+    return templates.TemplateResponse("level-selection.html", {"request": request})
 
 @app.get("/test-model", response_class=HTMLResponse)
 def model_html():
     return HTMLResponse(content=read_html("app/static/3d-model.html"))
 
 @app.get("/team", response_class=HTMLResponse)
-def team_html():
-    return HTMLResponse(content=read_html("app/static/team.html"))
+def team_html(request: Request):
+    return templates.TemplateResponse("team.html", {"request": request})
 
 @app.get("/lore", response_class=HTMLResponse)
 def lore_html():
@@ -40,3 +42,7 @@ def lore_html():
 @app.get("/documentation", response_class=HTMLResponse)
 def document_html():
     return HTMLResponse(content=read_html("app/static/documentation.html"))
+
+@app.get("/test", response_class=HTMLResponse)
+def document_html():
+    return HTMLResponse(content=read_html("app/static/template.html"))
