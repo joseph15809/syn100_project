@@ -1,16 +1,58 @@
-<!DOCTYPE html>
-<html lang ="en">
-    <head>
-        <meta charset = "UTF-8">
-        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lore</title>
-        <link rel = "stylesheet" href="/static/css/lore.css">
+{% extends "template.html" %}
+{% block title %}Lore{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="/static/css/lore.css">
+{% endblock %}
 
-    </head>
-    <body>
-        <h1>HEY !</h1>
-        <h3>not yet implemented</h3>
-        <p>im diamond in ow tho</p>
-        <img src="/static/assets/ow.png" width="500px">
-    </body>
-</html>
+{% block content %}
+        <main>
+            <div class = "content">
+                <div class="lore-section" id="tech-ruin" data-aos="fade-down" data-aos-duration="1500">
+                    <h3 class="section-name">↓ Tech Ruin</h3>
+                    <p class="lore-text">
+                        this is a lot of text. this is a lot of text. this is a lot of text.this is a lot of text.this is a lot of text.v this is a lot of text.this is a
+                         lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is 
+                         a lot of text.this is a lot of text.this is a lot of text.thi
+                        s is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.
+                        this is a lot of text. this is a lot of text. this is a lot of text.this is a lot of text.this is a lot of text.v this is a lot of text.this is a
+                         lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is 
+                         a lot of text.this is a lot of text.this is a lot of text.thi
+                        s is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.
+                        this is a lot of text. this is a lot of text. this is a lot of text.this is a lot of text.this is a lot of text.v this is a lot of text.this is a
+                         lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is 
+                         a lot of text.this is a lot of text.this is a lot of text.thi
+                        s is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.                       
+                         s is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.       
+                        this is a lot of text. this is a lot of text. this is a lot of text.this is a lot of text.this is a lot of text.v this is a lot of text.this is a
+                         lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is 
+                         a lot of text.this is a lot of text.this is a lot of text.thi
+                        s is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.                       
+                         s is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.this is a lot of text.                   
+                    </p>
+                </div>
+                <div class="lore-section" id="solarpunk" data-aos="fade-down" data-aos-duration="2000">
+                    <h3 class="section-name">↓ Solarpunk</h3>
+                    <p class="lore-text">
+                        2
+                    </p>
+                </div>
+                <div class="lore-section" id="nature" data-aos="fade-down" data-aos-duration="2500">
+                    <h3 class="section-name">↓ Nature</h3>
+                    <p class="lore-text">
+                        3
+                    </p>
+                </div>
+            </div>
+        </main>       
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".lore-section").forEach(section => {
+        section.addEventListener("click", () => {
+        section.classList.toggle("active");
+    });
+  });
+});
+    </script>
+{% endblock %}

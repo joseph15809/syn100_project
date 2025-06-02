@@ -8,24 +8,36 @@ const clone1 = tpl.content.cloneNode(true);
 clone1.querySelector(".card-fullname").textContent = "Akhil Kalakota";
 clone1.querySelector(".card-jobtitle").textContent = "Frontend Developer";
 clone1.querySelector(".card-desc").textContent = "Zoe main in league";
+let contact1 = clone1.querySelectorAll(".card-contact");
+contact1[0].textContent = "(805) 630-4046"
+contact1[1].textContent = "akalakota@ucsd.edu"
 akhil.appendChild(clone1);
 
 const clone2 = tpl.content.cloneNode(true);
 clone2.querySelector(".card-fullname").textContent = "Ohm R Mahmood";
 clone2.querySelector(".card-jobtitle").textContent = "Game Developer";
 clone2.querySelector(".card-desc").textContent = "Loves Minecraft but doesn't want to develop Minecraft 2";
+let contact2 = clone2.querySelectorAll(".card-contact");
+contact2[0].textContent = "(510) 789-3497"
+contact2[1].textContent = "ommahmood@ucsd.edu"
 omar.appendChild(clone2);
 
 const clone3 = tpl.content.cloneNode(true);
 clone3.querySelector(".card-fullname").textContent = "Brian Huynh";
 clone3.querySelector(".card-jobtitle").textContent = "Game Designer/Lore";
 clone3.querySelector(".card-desc").textContent = "Big Data";
+let contact3 = clone3.querySelectorAll(".card-contact");
+contact3[0].textContent = "(562) 331-1828"
+contact3[1].textContent = "bth001@ucsd.edu"
 brian.appendChild(clone3);
 
 const clone4 = tpl.content.cloneNode(true);
 clone4.querySelector(".card-fullname").textContent = "Joseph Gonzalez";
 clone4.querySelector(".card-jobtitle").textContent = "Fullstack Developer";
 clone4.querySelector(".card-desc").textContent = "Doomfist one trick";
+let contact4 = clone4.querySelectorAll(".card-contact");
+contact4[0].textContent = "(949) 630-7791"
+contact4[1].textContent = "jog038@ucsd.edu"
 joe.appendChild(clone4);
 
 

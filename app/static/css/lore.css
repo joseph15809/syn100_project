@@ -1,0 +1,60 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2rem 0;
+}
+
+.lore-section {
+    width: 100%;
+    background-size: 200%;
+    animation: animationGradient 2.5s linear infinite;
+    border-radius: 10px;
+    box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 16px rgba(255, 255, 255, 0.6),
+    0 0 24px rgba(255, 255, 255, 0.4);
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.lore-section.active {
+    box-shadow:
+    0 0 12px rgba(255, 255, 255, 1),
+    0 0 24px rgba(255, 255, 255, 0.8),
+    0 0 36px rgba(255, 255, 255, 0.6);
+}
+
+.section-name {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.25rem;
+    }
+
+.lore-text {
+    display: none;
+    font-size: clamp(1rem 1.25rem, 4rem);
+    margin: 0.75rem 1rem 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: #e7e7e7;
+    padding: 1rem;
+    border-radius: 8px;
+    line-height: 1.4;
+}
+
+.lore-section.active .lore-text {
+    display: block;
+}
+
+@keyframes animationGradient {
+    to {
+    background-position: 200%;
+    }
+}

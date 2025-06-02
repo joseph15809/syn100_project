@@ -36,12 +36,12 @@ def team_html(request: Request):
     return templates.TemplateResponse("team.html", {"request": request})
 
 @app.get("/lore", response_class=HTMLResponse)
-def lore_html():
-    return HTMLResponse(content=read_html("app/static/lore.html"))
+def lore_html(request: Request):
+    return templates.TemplateResponse("lore.html", {"request": request})
     
 @app.get("/documentation", response_class=HTMLResponse)
-def document_html():
-    return HTMLResponse(content=read_html("app/static/documentation.html"))
+def document_html(request: Request):
+    return templates.TemplateResponse("documentation.html", {"request": request})
 
 @app.get("/test", response_class=HTMLResponse)
 def document_html():
