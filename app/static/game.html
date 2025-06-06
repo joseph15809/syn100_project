@@ -1,0 +1,19 @@
+{% extends "template.html" %}
+{% block title %}Documentation{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="/static/css/game.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="content">
+        <main>
+              <iframe
+            id="unity-frame"
+            src="/terra-game/index.html"
+            allowfullscreen
+        ></iframe>
+        </main>
+    </div>
+</main>
+{% endblock %}
